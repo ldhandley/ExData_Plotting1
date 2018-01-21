@@ -11,8 +11,10 @@ twodaydata <- mutate(twodaydata, datetime = as.POSIXct(paste(Date, Time), format
 twodaydata <- select(twodaydata, -Date, -Time)
 
 ##PLOT & WRITE TO FILE
-png(filename = "plot1.png",width = 480, height = 480)
-###
-##FILL THIS IN
-###
+png(filename = "plot3.png",width = 480, height = 480)
+with(twodaydata, plot(datetime,Sub_metering_1, type="n",xlab="", ylab="Energy sub metering"))
+with(twodaydata, lines(datetime,Sub_metering_1, col="black"))
+with(twodaydata, lines(datetime,Sub_metering_2, col="red"))
+with(twodaydata, lines(datetime,Sub_metering_3, col="blue"))
+legend("topright", legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"), col=c("black","red","blue"), lty=1)
 dev.off()

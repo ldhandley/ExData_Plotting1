@@ -11,8 +11,6 @@ twodaydata <- mutate(twodaydata, datetime = as.POSIXct(paste(Date, Time), format
 twodaydata <- select(twodaydata, -Date, -Time)
 
 ##PLOT & WRITE TO FILE
-png(filename = "plot1.png",width = 480, height = 480)
-###
-##FILL THIS IN
-###
+png(filename = "plot2.png",width = 480, height = 480)
+plot(twodaydata$datetime, twodaydata$Global_active_power, type="l", xlab="", ylab="Global Active Power (kilowatts)")
 dev.off()

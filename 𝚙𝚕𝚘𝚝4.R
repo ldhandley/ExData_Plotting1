@@ -11,8 +11,14 @@ twodaydata <- mutate(twodaydata, datetime = as.POSIXct(paste(Date, Time), format
 twodaydata <- select(twodaydata, -Date, -Time)
 
 ##PLOT & WRITE TO FILE
-png(filename = "plot1.png",width = 480, height = 480)
-###
-##FILL THIS IN
-###
+png(filename = "plot4.png",width = 480, height = 480)
+par(mfrow=c(2,2))
+plot(twodaydata$datetime, twodaydata$Global_active_power, type="l", xlab="", ylab="Global Active Power")
+plot(twodaydata$datetime, twodaydata$Voltage, type="l", xlab="datetime", ylab="Voltage")
+with(twodaydata, plot(datetime,Sub_metering_1, type="n",xlab="", ylab="Energy sub metering"))
+with(twodaydata, lines(datetime,Sub_metering_1, col="black"))
+with(twodaydata, lines(datetime,Sub_metering_2, col="red"))
+with(twodaydata, lines(datetime,Sub_metering_3, col="blue"))
+legend("topright", legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"), lty=1, col=c("black","red","blue"), bg=NULL, box.lwd=0)
+plot(twodaydata$datetime, twodaydata$Global_reactive_power, type="l", xlab="datetime", ylab="Global_reactive_power")
 dev.off()
